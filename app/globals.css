@@ -81,6 +81,8 @@ html, body {
   background: transparent;
   border: none;
   box-shadow: none;
+  position: relative;
+  z-index: 10;
 }
 
 @media (max-width: 480px) {
@@ -388,5 +390,64 @@ html, body {
   border-color: var(--color-orange);
   color: var(--color-orange);
   box-shadow: 0 4px 12px rgba(255, 123, 0, 0.08);
+}
+
+/* ===== Background SVG Stroke Decoration ===== */
+.bg-stroke-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Subtle background gradient to blend the page together */
+.app-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(255, 123, 0, 0.03) 0%, transparent 60%),
+              radial-gradient(circle at bottom left, rgba(255, 123, 0, 0.015) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-stroke-svg {
+  position: absolute;
+  width: 1200px;
+  height: auto;
+  opacity: 0.22; /* Darker/more visible as requested */
+  left: 50%;
+  top: 50%;
+  transform: translate(-66.5%, -15%) rotate(-5deg);
+  transform-origin: center;
+}
+
+@media (max-width: 768px) {
+  .bg-stroke-svg {
+    width: 900px;
+    transform: translate(-66.5%, -15%) rotate(-5deg);
+  }
+}
+
+.bg-stroke-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-bg-stroke 14s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes draw-bg-stroke {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 

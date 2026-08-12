@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { parseAuthParams, AuthParams } from "@/lib/auth-parser";
 import { generateDeepLink } from "@/lib/deep-link";
-import Confetti from "@/components/Confetti";
+import BackgroundStroke from "@/components/BackgroundStroke";
 
 export default function AuthCallbackPage() {
   const [params, setParams] = useState<AuthParams>({});
@@ -53,6 +53,7 @@ export default function AuthCallbackPage() {
   if (!mounted) {
     return (
       <main className="app-container">
+        <BackgroundStroke />
         <div className="auth-wrapper" style={{ alignItems: "center", justifyContent: "center" }}>
           <div className="logo-header">
             <img src="/logo.png" alt="Fluff Walks" className="logo-image" />
@@ -68,6 +69,7 @@ export default function AuthCallbackPage() {
   if (!isAuthAction) {
     return (
       <main className="app-container">
+        <BackgroundStroke />
         <div className="auth-wrapper" style={{ maxWidth: "520px" }}>
           {/* Brand Logo Header */}
           <div className="logo-header">
@@ -193,8 +195,7 @@ export default function AuthCallbackPage() {
 
   return (
     <main className="app-container">
-      {/* High-quality confetti celebration on success */}
-      <Confetti active={!isError} />
+      <BackgroundStroke />
 
       <div className="auth-wrapper">
         {/* Brand Logo Header */}

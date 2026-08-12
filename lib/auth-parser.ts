@@ -9,6 +9,7 @@ export interface AuthParams {
   errorDescription?: string;
   code?: string;
   email?: string;
+  appRedirect?: string;
 }
 
 export function parseAuthParams(): AuthParams {
@@ -37,6 +38,7 @@ export function parseAuthParams(): AuthParams {
   if (queryParams.has("error_description")) params.errorDescription = params.errorDescription || queryParams.get("error_description")!;
   if (queryParams.has("type")) params.type = params.type || queryParams.get("type")!;
   if (queryParams.has("code")) params.code = params.code || queryParams.get("code")!;
+  if (queryParams.has("app_redirect")) params.appRedirect = queryParams.get("app_redirect")!;
 
   // Decode user email from JWT access token if available
   if (params.accessToken) {

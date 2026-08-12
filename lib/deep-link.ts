@@ -17,6 +17,22 @@ export function generateDeepLink(scheme: SchemeType, params: AuthParams): string
   const queryString = query.toString();
   const searchPart = queryString ? `?${queryString}` : "";
 
+  // If a dynamic app_redirect deep link was passed from the app client (e.g. exp:// or mobile://), use it directly
+  if (params.appRedirect) {
+    try {
+      const url = new URL(params.appRedirect);
+      query.forEach((val, key) => {
+        url.searchParams.set(key, val);
+      });
+      return url.toString();
+    } catch (e) {
+      // If URL parsing fails (e.g. custom scheme like mobile:// doesn't parse well by standard browser URL class),
+      // do a manual query string merge.
+      const separator = params.appRedirect.includes("?") ? "&" : "?";
+      return `${params.appRedirect}${queryString ? `${separator}${queryString}` : ""}`;
+    }
+  }
+
   switch (scheme) {
     case "fluffwalks":
       return `fluffwalks://auth/callback${searchPart}`;

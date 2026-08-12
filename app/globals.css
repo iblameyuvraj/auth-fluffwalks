@@ -1,0 +1,401 @@
+/* ===== Satoshi Font (Fontshare CDN matching fluffwalks-website) ===== */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://framerusercontent.com/third-party-assets/fontshare/wf/TTX2Z3BF3P6Y5BQT3IV2VNOK6FL22KUT/7QYRJOI3JIMYHGY6CH7SOIFRQLZOLNJ6/KFIAZD4RUMEZIYV6FQ3T3GP5PDBDB6JY.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://framerusercontent.com/third-party-assets/fontshare/wf/P2LQKHE6KA6ZP4AAGN72KDWMHH6ZH3TA/ZC32TK2P7FPS5GFTL46EU6KQJA24ZYDB/7AHDUZ4A7LFLVFUIFSARGIWCRQJHISQP.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://framerusercontent.com/third-party-assets/fontshare/wf/LAFFD4SDUCDVQEXFPDC7C53EQ4ZELWQI/PXCT3G6LO6ICM5I3NTYENYPWJAECAWDD/GHM6WVH6MILNYOOCXHXB5GTSGNTMGXZR.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-orange: #ff7b00;
+  --color-orange-hover: #e06c00;
+  --color-orange-light: #fff7ed;
+  --color-orange-glow: rgba(255, 123, 0, 0.25);
+  
+  --bg-primary: #fffdfb;
+  --bg-gradient: radial-gradient(circle at 50% 20%, rgba(255, 123, 0, 0.09) 0%, rgba(255, 253, 251, 0) 70%);
+  
+  --card-bg: rgba(255, 255, 255, 0.82);
+  --card-border: rgba(255, 123, 0, 0.18);
+  --card-shadow: 0 20px 50px -10px rgba(255, 123, 0, 0.10), 0 8px 30px rgba(0, 0, 0, 0.04);
+  
+  --text-dark: #262626;
+  --text-muted: #575757;
+  --text-subtle: #8a8a8a;
+  
+  --font-sans: 'Satoshi', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius-card: 28px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #121214;
+    --bg-gradient: radial-gradient(circle at 50% 20%, rgba(255, 123, 0, 0.12) 0%, rgba(18, 18, 20, 0) 75%);
+    
+    --card-bg: rgba(24, 24, 28, 0.85);
+    --card-border: rgba(255, 123, 0, 0.25);
+    --card-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 8px 30px rgba(0, 0, 0, 0.4);
+    
+    --text-dark: #f5f5f7;
+    --text-muted: #a1a1aa;
+    --text-subtle: #71717a;
+    
+    --color-orange-light: rgba(255, 123, 0, 0.12);
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  background-image: var(--bg-gradient);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-orange-glow);
+  color: var(--color-orange);
+}
+
+/* Base Layout Container */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  position: relative;
+}
+
+/* Glassmorphism Auth Portal Card */
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--card-shadow);
+  padding: 36px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.auth-card:hover {
+  box-shadow: 0 24px 60px -10px rgba(255, 123, 0, 0.14), 0 10px 35px rgba(0, 0, 0, 0.06);
+}
+
+/* Header & Floating Paw Icon */
+.logo-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.brand-logo-img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(255, 123, 0, 0.25));
+  animation: floatPaw 3.5s ease-in-out infinite;
+}
+
+@keyframes floatPaw {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+}
+
+.floating-paw-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  font-size: 20px;
+  animation: bouncePaw 2.2s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
+}
+
+@keyframes bouncePaw {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.15);
+  }
+}
+
+.brand-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.status-badge.success {
+  background: rgba(52, 211, 153, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(52, 211, 153, 0.25);
+}
+
+.status-badge.error {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+/* Animated Checkmark Circle */
+.icon-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  margin: 0 auto 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.icon-circle.success {
+  background: linear-gradient(135deg, rgba(255, 123, 0, 0.15) 0%, rgba(255, 170, 0, 0.25) 100%);
+  border: 2px solid var(--color-orange);
+  box-shadow: 0 0 30px rgba(255, 123, 0, 0.25);
+}
+
+.icon-circle.error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 2px solid #ef4444;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.2);
+}
+
+.checkmark-svg {
+  width: 40px;
+  height: 40px;
+  stroke: var(--color-orange);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.checkmark-check {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: drawCheckmark 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards 0.2s;
+}
+
+@keyframes drawCheckmark {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Typography Headings */
+.headline {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.subheadline {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+/* Verified Email Pill */
+.email-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-orange-light);
+  border: 1px solid var(--card-border);
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-orange);
+  margin-bottom: 24px;
+  word-break: break-all;
+}
+
+/* Countdown & Progress Bar */
+.countdown-box {
+  margin-bottom: 24px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: rgba(255, 123, 0, 0.05);
+  border: 1px dashed rgba(255, 123, 0, 0.2);
+}
+
+.countdown-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-orange);
+  margin-bottom: 8px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 123, 0, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ff7b00, #ffaa00);
+  border-radius: 999px;
+  transition: width 0.1s linear;
+}
+
+/* Action Buttons */
+.btn-primary {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #ff7b00 0%, #ff9500 100%);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(255, 123, 0, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(255, 123, 0, 0.45);
+  background: linear-gradient(135deg, #ff8800 0%, #ffa000 100%);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Controls */
+.secondary-actions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.scheme-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-subtle);
+}
+
+.scheme-btn {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scheme-btn.active, .scheme-btn:hover {
+  border-color: var(--color-orange);
+  color: var(--color-orange);
+  background: var(--color-orange-light);
+}
+
+.btn-text-link {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.btn-text-link:hover {
+  color: var(--color-orange);
+}
+
+/* Footer branding */
+.footer-text {
+  margin-top: 28px;
+  font-size: 12px;
+  color: var(--text-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}

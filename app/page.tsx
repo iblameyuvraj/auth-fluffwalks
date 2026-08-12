@@ -31,20 +31,6 @@ export default function AuthCallbackPage() {
   // Default to standard mobile app scheme URL
   const deepLinkUrl = generateDeepLink("mobile", params);
 
-  // Auto-trigger redirect after 1.5 seconds on success
-  useEffect(() => {
-    if (!mounted || isError || !isAuthAction) return;
-
-    const timer = setTimeout(() => {
-      try {
-        window.location.href = deepLinkUrl;
-      } catch (e) {
-        console.warn("Redirect failed:", e);
-      }
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, [mounted, isError, isAuthAction, deepLinkUrl]);
 
   const handleOpenApp = () => {
     window.location.href = deepLinkUrl;

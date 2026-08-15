@@ -6,11 +6,23 @@ export default function BackgroundStroke() {
   const [strokeColor, setStrokeColor] = useState("var(--color-orange)");
 
   useEffect(() => {
-    // Generate a random, beautiful, vibrant, and rich HSL color on mount
-    const hue = Math.floor(Math.random() * 360);
-    // Saturation: 85% (vibrant), Lightness: 42% (slightly darker/richer brand-level colors)
-    const randomColor = `hsl(${hue}, 85%, 42%)`;
-    setStrokeColor(randomColor);
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const generateColor = (isDark: boolean) => {
+      const hue = Math.floor(Math.random() * 360);
+      // In dark mode: Lightness 58% (bright & luminous on black)
+      // In light mode: Lightness 42% (rich & visible on white)
+      const lightness = isDark ? 58 : 42;
+      return `hsl(${hue}, 85%, ${lightness}%)`;
+    };
+
+    setStrokeColor(generateColor(mediaQuery.matches));
+
+    const handler = (e: MediaQueryListEvent) => {
+      setStrokeColor(generateColor(e.matches));
+    };
+
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
   }, []);
 
   return (
